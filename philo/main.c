@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 13:52:48 by skarayil          #+#    #+#             */
-/*   Updated: 2026/02/27 16:32:27 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:04:42 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static bool	ft_simulation(t_data *data)
 	}
 	if (pthread_create(&monitor, NULL, &ft_monitor, data) != 0)
 		return (ft_error("Failed to create monitor thread"));
+	i = -1;
 	while (++i < data->args.philos)
 		pthread_join(data->philos[i].thread, NULL);
 	pthread_join(monitor, NULL);

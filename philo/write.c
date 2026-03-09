@@ -6,10 +6,12 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:17:38 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/07 15:33:41 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:00:54 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
+#include <unistd.h>
 #define YELLOW "\033[1;33m"
 #define GREEN "\033[1;32m"
 #define WHITE "\033[1;37m"
@@ -17,8 +19,6 @@
 #define BLUE "\033[1;34m"
 #define RED "\033[1;31m"
 #define RESET "\033[0m"
-#include "philo.h"
-#include <unistd.h>
 
 static char	*ft_get_txt(t_msg msg)
 {

@@ -6,11 +6,10 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 15:12:41 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/07 13:44:36 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:03:36 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
 #include <stddef.h>
 #include <unistd.h>
 
