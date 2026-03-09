@@ -6,14 +6,15 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 03:43:56 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 08:18:30 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 #include <signal.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 static void	ft_kill_all(t_data *data)
 {

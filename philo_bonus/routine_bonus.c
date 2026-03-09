@@ -6,13 +6,14 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 03:41:10 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 07:52:20 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 static void	ft_take_forks(t_local *philo, t_data *data)
 {

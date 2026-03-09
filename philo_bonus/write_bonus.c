@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 02:29:13 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:00:23 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	ft_build(t_philo *philo, t_msg msg, char *buf)
 	i = ft_buf(buf, ft_get_clr(msg), -1, i);
 	buf[i++] = '[';
 	i = ft_buf(buf, NULL, time, i);
-	i = ft_buf(buf, "ms] ", -1, i);
+	i = ft_buf(buf, "] ", -1, i);
 	i = ft_buf(buf, NULL, philo->id, i);
 	buf[i++] = ' ';
 	i = ft_buf(buf, ft_get_txt(msg), -1, i);
