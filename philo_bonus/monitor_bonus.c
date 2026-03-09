@@ -6,13 +6,12 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 02:59:06 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 03:43:56 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 #include <signal.h>
-#include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
 

@@ -6,18 +6,15 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 02:49:57 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 03:40:45 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
-# include <pthread.h>
 # include <semaphore.h>
-# include <signal.h>
 # include <stdbool.h>
-# include <sys/types.h>
 
 typedef struct s_data	t_data;
 
