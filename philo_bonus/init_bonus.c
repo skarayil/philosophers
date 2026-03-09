@@ -6,16 +6,16 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 08:10:46 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:48:01 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 
-static bool	ft_create_semaphores(t_data *data)
+static bool	ft_semaphores(t_data *data)
 {
 	sem_unlink("/philo_forks");
 	data->sem.forks = sem_open("/philo_forks", O_CREAT, 0644,
@@ -33,7 +33,7 @@ static bool	ft_create_semaphores(t_data *data)
 	return (true);
 }
 
-static bool	ft_init_philos_data(t_data *data)
+static bool	ft_philos(t_data *data)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ static bool	ft_init_philos_data(t_data *data)
 	return (true);
 }
 
-static bool	ft_create_processes(t_data *data)
+static bool	ft_processes(t_data *data)
 {
 	int		i;
 	pid_t	pid;
@@ -63,7 +63,7 @@ static bool	ft_create_processes(t_data *data)
 		if (pid == -1)
 			return (ft_error("fork failed"));
 		if (pid == 0)
-			ft_child_routine(&data->philos[i]);
+			ft_child(&data->philos[i]);
 		else
 			data->philos[i].pid = pid;
 		i++;
@@ -77,15 +77,15 @@ bool	ft_init(t_data *data, char *av[])
 	if (data->args.philos <= 0 || data->args.die <= 0 || data->args.eat <= 0
 		|| data->args.sleep <= 0 || (av[5] && data->args.limit <= 0))
 		return (ft_error("All values must be positive integers"));
-	if (!ft_create_semaphores(data))
+	if (!ft_semaphores(data))
 		return (false);
-	if (!ft_init_philos_data(data))
+	if (!ft_philos(data))
 	{
 		ft_cleanup(data);
 		return (false);
 	}
 	data->start_time = ft_gettime();
-	if (!ft_create_processes(data))
+	if (!ft_processes(data))
 	{
 		ft_cleanup(data);
 		return (false);

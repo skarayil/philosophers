@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 08:18:30 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:50:57 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-static void	ft_kill_all(t_data *data)
+static void	ft_kill(t_data *data)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ static void	ft_kill_all(t_data *data)
 	}
 }
 
-static int	ft_check_child_exit(t_data *data, int *finished)
+static int	ft_check(t_data *data, int *finished)
 {
 	int		status;
 	pid_t	pid;
@@ -50,7 +50,7 @@ static int	ft_check_child_exit(t_data *data, int *finished)
 	return (0);
 }
 
-void	ft_parent_monitor(t_data *data)
+void	ft_parent(t_data *data)
 {
 	int	finished;
 	int	ret;
@@ -58,12 +58,12 @@ void	ft_parent_monitor(t_data *data)
 	finished = 0;
 	while (1)
 	{
-		ret = ft_check_child_exit(data, &finished);
+		ret = ft_check(data, &finished);
 		if (ret == -1)
 			break ;
 		if (ret == 1)
 		{
-			ft_kill_all(data);
+			ft_kill(data);
 			while (waitpid(-1, NULL, 0) > 0)
 				;
 			break ;
@@ -73,7 +73,7 @@ void	ft_parent_monitor(t_data *data)
 	}
 }
 
-void	*monitor_thread(void *arg)
+void	*ft_monitor(void *arg)
 {
 	t_local	*local;
 	t_data	*data;

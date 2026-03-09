@@ -6,16 +6,16 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 07:52:20 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:54:51 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
 
-static void	ft_take_forks(t_local *philo, t_data *data)
+static void	ft_forks(t_local *philo, t_data *data)
 {
 	sem_wait(data->sem.turn);
 	sem_wait(data->sem.forks);
@@ -27,7 +27,7 @@ static void	ft_take_forks(t_local *philo, t_data *data)
 
 void	ft_eat(t_local *philo, t_data *data)
 {
-	ft_take_forks(philo, data);
+	ft_forks(philo, data);
 	sem_wait(philo->meal_lock);
 	philo->last_meal = ft_gettime();
 	philo->eat_count++;
@@ -49,7 +49,7 @@ void	ft_sleep_think(t_local *philo, t_data *data)
 		usleep(500);
 }
 
-static void	build_sem_name(char *sem_name, t_local *local)
+static void	ft_name(char *sem_name, t_local *local)
 {
 	char	pid_str[12];
 	char	id_str[12];
@@ -66,16 +66,16 @@ static void	build_sem_name(char *sem_name, t_local *local)
 	sem_name[9] = 'k';
 	sem_name[10] = '_';
 	sem_name[11] = '\0';
-	ft_itoa_buf(getpid(), pid_str);
-	ft_itoa_buf(local->id, id_str);
-	ft_strcat_buf(sem_name, pid_str);
-	ft_strcat_buf(sem_name, "_");
-	ft_strcat_buf(sem_name, id_str);
+	ft_itoa(getpid(), pid_str);
+	ft_itoa(local->id, id_str);
+	ft_strcat(sem_name, pid_str);
+	ft_strcat(sem_name, "_");
+	ft_strcat(sem_name, id_str);
 }
 
-void	create_meal_semaphore(t_local *local, char *sem_name, t_data *data)
+void	ft_meal(t_local *local, char *sem_name, t_data *data)
 {
-	build_sem_name(sem_name, local);
+	ft_name(sem_name, local);
 	sem_unlink(sem_name);
 	local->meal_lock = sem_open(sem_name, O_CREAT, 0644, 1);
 	sem_unlink(sem_name);

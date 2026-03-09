@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/08 04:31:23 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:50:26 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char *av[])
 	ft_memset(&data, 0, sizeof(t_data));
 	if (!ft_init(&data, av))
 		return (1);
-	ft_parent_monitor(&data);
+	ft_parent(&data);
 	ft_cleanup(&data);
 	return (0);
 }

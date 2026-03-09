@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 03:43:36 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/09 09:54:51 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static void	init_and_start_monitor(t_philo *philo, t_local *local, t_data *data)
+static void	ft_start(t_philo *philo, t_local *local, t_data *data)
 {
 	pthread_t	monitor;
 
@@ -23,11 +23,11 @@ static void	init_and_start_monitor(t_philo *philo, t_local *local, t_data *data)
 	local->last_meal = data->start_time;
 	local->eat_count = 0;
 	local->data = data;
-	pthread_create(&monitor, NULL, monitor_thread, local);
+	pthread_create(&monitor, NULL, ft_monitor, local);
 	pthread_detach(monitor);
 }
 
-static void	handle_single_philo(t_philo *philo, t_data *data)
+static void	ft_single(t_philo *philo, t_data *data)
 {
 	sem_wait(data->sem.forks);
 	ft_write(philo, MSG_TAKE_FORK);
@@ -37,7 +37,7 @@ static void	handle_single_philo(t_philo *philo, t_data *data)
 	exit(0);
 }
 
-static void	philo_loop(t_local *local, t_data *data)
+static void	ft_loop(t_local *local, t_data *data)
 {
 	while (1)
 	{
@@ -53,26 +53,26 @@ static void	philo_loop(t_local *local, t_data *data)
 	}
 }
 
-static void	cleanup_and_exit(t_local *local, t_data *data)
+static void	ft_exit(t_local *local, t_data *data)
 {
 	sem_close(local->meal_lock);
 	free(data->philos);
 	exit(0);
 }
 
-void	ft_child_routine(t_philo *philo)
+void	ft_child(t_philo *philo)
 {
 	t_data	*data;
 	t_local	local;
 	char	sem_name[256];
 
 	data = philo->data;
-	init_and_start_monitor(philo, &local, data);
-	create_meal_semaphore(&local, sem_name, data);
+	ft_start(philo, &local, data);
+	ft_meal(&local, sem_name, data);
 	if (data->args.philos == 1)
-		handle_single_philo(philo, data);
+		ft_single(philo, data);
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	philo_loop(&local, data);
-	cleanup_and_exit(&local, data);
+	ft_loop(&local, data);
+	ft_exit(&local, data);
 }
