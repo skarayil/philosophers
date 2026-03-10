@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 09:35:28 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/10 10:56:24 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	ft_itoa(int n, char *buf)
 
 void	ft_strcat(char *dest, const char *src)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (dest[i])

@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 09:54:51 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/10 10:51:26 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,6 @@ static void	ft_forks(t_local *philo, t_data *data)
 	sem_wait(data->sem.forks);
 	ft_write(philo->data->philos + (philo->id - 1), MSG_TAKE_FORK);
 	sem_post(data->sem.turn);
-}
-
-void	ft_eat(t_local *philo, t_data *data)
-{
-	ft_forks(philo, data);
-	sem_wait(philo->meal_lock);
-	philo->last_meal = ft_gettime();
-	philo->eat_count++;
-	sem_post(philo->meal_lock);
-	ft_write(philo->data->philos + (philo->id - 1), MSG_EATING);
-	ft_usleep(data->args.eat);
-	sem_post(data->sem.forks);
-	sem_post(data->sem.forks);
-}
-
-void	ft_sleep_think(t_local *philo, t_data *data)
-{
-	ft_write(philo->data->philos + (philo->id - 1), MSG_SLEEPING);
-	ft_usleep(data->args.sleep);
-	ft_write(philo->data->philos + (philo->id - 1), MSG_THINKING);
-	if (data->args.philos % 2 != 0)
-		ft_usleep(data->args.eat / 2);
-	else
-		usleep(500);
 }
 
 static void	ft_name(char *sem_name, t_local *local)
@@ -71,6 +47,30 @@ static void	ft_name(char *sem_name, t_local *local)
 	ft_strcat(sem_name, pid_str);
 	ft_strcat(sem_name, "_");
 	ft_strcat(sem_name, id_str);
+}
+
+void	ft_eat(t_local *philo, t_data *data)
+{
+	ft_forks(philo, data);
+	sem_wait(philo->meal_lock);
+	philo->last_meal = ft_gettime();
+	philo->eat_count++;
+	sem_post(philo->meal_lock);
+	ft_write(philo->data->philos + (philo->id - 1), MSG_EATING);
+	ft_usleep(data->args.eat);
+	sem_post(data->sem.forks);
+	sem_post(data->sem.forks);
+}
+
+void	ft_sleep_think(t_local *philo, t_data *data)
+{
+	ft_write(philo->data->philos + (philo->id - 1), MSG_SLEEPING);
+	ft_usleep(data->args.sleep);
+	ft_write(philo->data->philos + (philo->id - 1), MSG_THINKING);
+	if (data->args.philos % 2 != 0)
+		ft_usleep(data->args.eat / 2);
+	else
+		usleep(500);
 }
 
 void	ft_meal(t_local *local, char *sem_name, t_data *data)
