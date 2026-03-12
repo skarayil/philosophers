@@ -13,10 +13,10 @@
 #include "philo_bonus.h"
 #include <unistd.h>
 
-#define YELLOW "\033[1;33m"
+#define PURPLE "\033[95m"
 #define GREEN "\033[1;32m"
 #define GREY "\033[1;30m"
-#define BLUE "\033[1;34m"
+#define BLUE "\033[94m"
 #define RED "\033[1;31m"
 #define RESET "\033[0m"
 
@@ -41,7 +41,7 @@ static char	*ft_get_clr(t_msg msg)
 	else if (msg == MSG_EATING)
 		return (BLUE);
 	else if (msg == MSG_SLEEPING)
-		return (YELLOW);
+		return (PURPLE);
 	else if (msg == MSG_THINKING)
 		return (GREY);
 	else
