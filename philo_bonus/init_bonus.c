@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 09:48:01 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/15 10:05:10 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ bool	ft_init(t_data *data, char *av[])
 		ft_cleanup(data);
 		return (false);
 	}
-	data->start_time = ft_gettime();
+	data->start = ft_gettime();
 	if (!ft_processes(data))
 	{
 		ft_cleanup(data);

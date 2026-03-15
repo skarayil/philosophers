@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 13:53:57 by skarayil          #+#    #+#             */
-/*   Updated: 2026/02/27 16:30:16 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/15 09:58:36 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <pthread.h>
 # include <stdbool.h>
 
-#define PURPLE "\033[95m"
-#define GREEN "\033[1;32m"
-#define GREY "\033[1;30m"
-#define BLUE "\033[94m"
-#define RED "\033[1;31m"
-#define RESET "\033[0m"
+# define PURPLE "\033[95m"
+# define GREEN "\033[1;32m"
+# define GREY "\033[1;30m"
+# define BLUE "\033[94m"
+# define RED "\033[1;31m"
+# define RESET "\033[0m"
 
 typedef struct s_data	t_data;
 

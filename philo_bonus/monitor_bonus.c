@@ -6,7 +6,7 @@
 /*   By: skarayil <skarayil@student.42kocaeli>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 12:00:00 by skarayil          #+#    #+#             */
-/*   Updated: 2026/03/09 09:50:57 by skarayil         ###   ########.fr       */
+/*   Updated: 2026/03/15 10:07:20 by skarayil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,24 @@ static void	ft_kill(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->args.philos)
-	{
+	i = -1;
+	while (++i < data->args.philos)
 		kill(data->philos[i].pid, SIGTERM);
-		i++;
-	}
 }
 
 static int	ft_check(t_data *data, int *finished)
 {
-	int		status;
+	int		stat;
 	pid_t	pid;
 
-	pid = waitpid(-1, &status, 0);
+	pid = waitpid(-1, &stat, 0);
 	if (pid <= 0)
 		return (-1);
-	if (WIFEXITED(status))
+	if (WIFEXITED(stat))
 	{
-		if (WEXITSTATUS(status) == 1)
+		if (WEXITSTATUS(stat) == 1)
 			return (1);
-		else if (WEXITSTATUS(status) == 0)
+		else if (WEXITSTATUS(stat) == 0)
 		{
 			(*finished)++;
 			if (*finished == data->args.philos)
@@ -56,7 +53,7 @@ void	ft_parent(t_data *data)
 	int	ret;
 
 	finished = 0;
-	while (1)
+	while (42)
 	{
 		ret = ft_check(data, &finished);
 		if (ret == -1)
@@ -78,21 +75,21 @@ void	*ft_monitor(void *arg)
 	t_local	*local;
 	t_data	*data;
 	long	elapsed;
-	t_philo	tmp_philo;
+	t_philo	tmp;
 
 	local = (t_local *)arg;
 	data = local->data;
-	while (1)
+	while (42)
 	{
 		usleep(500);
-		sem_wait(local->meal_lock);
-		elapsed = ft_gettime() - local->last_meal;
-		sem_post(local->meal_lock);
+		sem_wait(local->lock);
+		elapsed = ft_gettime() - local->last_eat;
+		sem_post(local->lock);
 		if (elapsed >= data->args.die)
 		{
-			tmp_philo.id = local->id;
-			tmp_philo.data = data;
-			ft_write(&tmp_philo, MSG_DIED);
+			tmp.id = local->id;
+			tmp.data = data;
+			ft_write(&tmp, MSG_DIED);
 			free(data->philos);
 			exit(1);
 		}
