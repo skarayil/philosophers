@@ -17,6 +17,13 @@
 # include <semaphore.h>
 # include <stdbool.h>
 
+#define PURPLE "\033[95m"
+#define GREEN "\033[1;32m"
+#define GREY "\033[1;30m"
+#define BLUE "\033[94m"
+#define RED "\033[1;31m"
+#define RESET "\033[0m"
+
 typedef struct s_data	t_data;
 
 typedef enum e_msg
