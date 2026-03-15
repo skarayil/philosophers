@@ -12,12 +12,6 @@
 
 #include "philo.h"
 #include <unistd.h>
-#define PURPLE "\033[95m"
-#define GREEN "\033[1;32m"
-#define GREY "\033[1;30m"
-#define BLUE "\033[94m"
-#define RED "\033[1;31m"
-#define RESET "\033[0m"
 
 static char	*ft_get_txt(t_msg msg)
 {
